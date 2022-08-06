@@ -59,6 +59,9 @@ class DatePicker extends StatefulWidget {
 
   /// Locale for the calendar default: en_us
   final String locale;
+  
+  /// direction
+  final Axis direction;
 
   DatePicker(
     this.startDate, {
@@ -78,6 +81,7 @@ class DatePicker extends StatefulWidget {
     this.daysCount = 500,
     this.onDateChange,
     this.locale = "en_US",
+    this.direction = Axis.horizontal,
   }) : assert(
             activeDates == null || inactiveDates == null,
             "Can't "
@@ -134,7 +138,7 @@ class _DatePickerState extends State<DatePicker> {
       height: widget.height,
       child: ListView.builder(
         itemCount: widget.daysCount,
-        scrollDirection: Axis.horizontal,
+        scrollDirection: widget.direction,
         controller: _controller,
         itemBuilder: (context, index) {
           // get the date object based on the index position
